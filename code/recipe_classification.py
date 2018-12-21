@@ -21,14 +21,14 @@ def logistic_test(X, y):
     model = LogisticRegression()
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
-    print 'First round:', metrics.accuracy_score(y_test, y_pred)
+    print('First round:', metrics.accuracy_score(y_test, y_pred))
     # tune parameter C
     crange = [0.01, 0.1, 1, 10, 100]
     for num in crange:
         model = LogisticRegression(C=num)
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
-        print 'C=', num, ',score=', metrics.accuracy_score(y_test, y_pred)
+        print('C=', num, ',score=', metrics.accuracy_score(y_test, y_pred))
 
 
 def svm_test(X, y):
@@ -36,14 +36,14 @@ def svm_test(X, y):
     model = svm.LinearSVC(C=1)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
-    print 'First round:', metrics.accuracy_score(y_test, y_pred)
+    print('First round:', metrics.accuracy_score(y_test, y_pred))
     # tune parameter C
     crange = [0.01, 0.1, 1, 10, 100]
     for num in crange:
         model = svm.LinearSVC(C=num)
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
-        print 'C=', num, ',score=', metrics.accuracy_score(y_test, y_pred)
+        print('C=', num, ',score=', metrics.accuracy_score(y_test, y_pred))
 
 
 def nb_test(X, y):
@@ -51,7 +51,7 @@ def nb_test(X, y):
     model = MultinomialNB()
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
-    print metrics.accuracy_score(y_test, y_pred)
+    print(metrics.accuracy_score(y_test, y_pred))
 
 
 def rf_test(X, y):
@@ -59,7 +59,7 @@ def rf_test(X, y):
     rf_model = RandomForestClassifier(n_estimators=100, n_jobs=-1)
     rf_model.fit(X_train, y_train)
     y_pred = rf_model.predict(X_test)
-    print metrics.accuracy_score(y_test, y_pred)
+    print(metrics.accuracy_score(y_test, y_pred))
 
 # plot confusion_matrix, 'col' is the y target
 
@@ -89,7 +89,7 @@ def flavor_profile(df, ingr, comp, ingr_comp):
     for item in sorted_ingredients:
         underscore_ingredients.append(item.replace(' ', '_'))
 
-    print len(underscore_ingredients), len(sorted_ingredients)
+    print(len(underscore_ingredients), len(sorted_ingredients))
 
     ingr_total = ingr_comp.join(ingr, how='right', on='# ingredient id')
     ingr_total = ingr_total.join(comp, how='right', on='compound id')
@@ -99,7 +99,7 @@ def flavor_profile(df, ingr, comp, ingr_comp):
     ingr_flavor = ingr_pivot[ingr_pivot.index.isin(underscore_ingredients)]
 
     df_flavor = df.values.dot(ingr_flavor.values)
-    print df.shape, df_flavor.shape
+    print(df.shape, df_flavor.shape)
 
     return df_flavor
 
@@ -122,7 +122,7 @@ def make_tfidf(arr):
     from sklearn.preprocessing import normalize
     tfidf = np.multiply(arr2_norm, arr2_idf)
     tfidf = normalize(tfidf, norm='l2', axis=1)
-    print tfidf.shape
+    print(tfidf.shape)
     return tfidf
 
 

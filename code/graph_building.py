@@ -51,7 +51,7 @@ def main():
     # build graph and extract backbone
     graph1 = nx.Graph()
     weights = {}
-    for i in xrange(df_subset.shape[0]):
+    for i in range(df_subset.shape[0]):
         graph1.add_edge(df_subset.iloc[i, 0], df_subset.iloc[i, 1])
         weights[df_subset.iloc[i, 0],
                 df_subset.iloc[i, 1]] = df_subset.iloc[i, 2]
@@ -94,3 +94,7 @@ def main():
 
     df_backbone.to_csv('data/backbone.csv', index=False)
     # use this csv in cytoscape to make the final graph
+
+
+if __name__ == '__main__':
+    main()
